@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Shop pre-loved shirts, denim jeans and salwar kameez at Reweara. Discover affordable clothing and give great clothes another life.">
+  <title>Reweara | Buy & Sell Pre-Loved Clothes</title>
+  <style>
+    :root {
+      --green: #203f32;
+      --green-light: #315c47;
+      --cream: #f7f4ec;
+      --gold: #e7c98d;
+      --text: #26382e;
+      --muted: #6b756e;
+      --white: #fff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--text);
+      background: var(--cream);
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 6%;
+      background: var(--green);
+      color: white;
+    }
+    .logo { color: var(--gold); text-decoration: none; font-size: 29px; font-weight: 800; letter-spacing: .4px; }
+    nav { display: flex; flex-wrap: wrap; gap: 18px; }
+    nav a { color: white; text-decoration: none; font-size: 15px; }
+    nav a:hover { color: var(--gold); }
+    main { max-width: 1180px; margin: 0 auto; padding: 28px 20px 55px; }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      align-items: center;
+      gap: 28px;
+      min-height: 390px;
+      padding: clamp(24px, 5vw, 55px);
+      border-radius: 24px;
+      background: linear-gradient(125deg, #e5eadf, #f3e3c9);
+      overflow: hidden;
+    }
+    .eyebrow { color: var(--green-light); font-size: 12px; font-weight: 800; letter-spacing: 2px; }
+    h1 { margin: 12px 0; font-size: clamp(34px, 4.4vw, 55px); line-height: 1.08; }
+    .hero p { max-width: 530px; line-height: 1.75; color: #4d5d51; }
+    .hero img { width: 100%; height: 320px; object-fit: cover; border-radius: 18px; }
+    .btn {
+      display: inline-block; border: 0; border-radius: 8px; padding: 12px 18px;
+      background: var(--green); color: white; text-decoration: none; font-weight: 700; cursor: pointer;
+    }
+    .btn.secondary { background: transparent; border: 1px solid var(--green); color: var(--green); }
+    .section-head { display: flex; align-items: end; justify-content: space-between; gap: 12px; margin: 38px 0 18px; }
+    h2 { margin: 0; font-size: clamp(24px, 3vw, 32px); }
+    .muted { color: var(--muted); line-height: 1.6; }
+    .filters { display: flex; flex-wrap: wrap; gap: 9px; margin: 18px 0 22px; }
+    .filter {
+      padding: 9px 14px; border: 1px solid #d6dacf; border-radius: 999px;
+      background: white; color: var(--text); cursor: pointer;
+    }
+    .filter.active { background: var(--green); color: white; border-color: var(--green); }
+    .grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+    .product {
+      display: flex; flex-direction: column; background: white; border-radius: 15px;
+      padding: 12px; box-shadow: 0 5px 22px #1e352b0c;
+    }
+    .product img { width: 100%; height: 215px; object-fit: cover; border-radius: 10px; background: #e7e7df; }
+    .category { margin: 13px 0 5px; color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: .8px; }
+    .product h3 { margin: 5px 0 8px; font-size: 17px; }
+    .product .description { color: var(--muted); font-size: 13px; line-height: 1.5; flex-grow: 1; }
+    .price { margin: 8px 0 14px; color: var(--green); font-size: 21px; font-weight: 800; }
+    .product-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+    .product-actions .btn { flex: 1; text-align: center; padding: 10px; font-size: 13px; }
+    .sell-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: 25px; margin-top: 45px; }
+    .sell-info { padding: 28px; border-radius: 18px; background: var(--green); color: white; }
+    .sell-info p { color: #e2e9e1; line-height: 1.7; }
+    form { background: white; padding: 24px; border-radius: 16px; box-shadow: 0 5px 22px #1e352b0c; }
+    label { display: block; margin: 12px 0 6px; font-size: 14px; font-weight: 700; }
+    input, select, textarea {
+      width: 100%; padding: 12px; border: 1px solid #d5dbd3; border-radius: 8px;
+      font: inherit; background: white;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    form button { margin-top: 16px; width: 100%; font-size: 15px; }
+    .notice { display: none; margin-top: 14px; padding: 12px; border-radius: 8px; background: #e5f2e6; color: #245332; }
+    footer { padding: 30px 20px; background: var(--green); color: white; text-align: center; }
+    footer .logo { display: inline-block; margin-bottom: 8px; }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .hero { grid-template-columns: 1fr 1fr; }
+      .sell-section { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      header { justify-content: center; text-align: center; }
+      nav { justify-content: center; }
+      .hero { grid-template-columns: 1fr; }
+      .hero img { height: 230px; }
+      .grid { grid-template-columns: 1fr; }
+      .section-head { align-items: start; flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <a class="logo" href="#home">Reweara</a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#collection">Shop Clothes</a>
+      <a href="#sell">Sell Clothes</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div>
+        <div class="eyebrow">PRE-LOVED FASHION · NEW STORIES</div>
+        <h1>Good clothes deserve another life.</h1>
+        <p>Discover beautiful pre-loved clothing at friendly prices. Shop a new look, or give clothes you no longer wear a second chance with Reweara.</p>
+        <a class="btn" href="#collection">Explore Collection</a>
+        <a class="btn secondary" href="#sell">Sell Your Clothes</a>
+      </div>
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=1100&q=85"
+           alt="Fashion shoppers browsing clothing" onerror="this.onerror=null;this.src='https://placehold.co/800x600/e5eadf/203f32?text=Reweara+Fashion';">
+    </section>
+
+    <section id="collection">
+      <div class="section-head">
+        <div>
+          <h2>Shop the Collection</h2>
+          <p class="muted">Pre-loved finds, ready for a new wardrobe.</p>
+        </div>
+        <span class="muted" id="product-count">4 items</span>
+      </div>
+      <div class="filters" aria-label="Filter products">
+        <button class="filter active" type="button" data-category="All">All Items</button>
+        <button class="filter" type="button" data-category="Jeans">Jeans</button>
+        <button class="filter" type="button" data-category="Shirts">Shirts</button>
+        <button class="filter" type="button" data-category="Salwar Kameez">Salwar Kameez</button>
+      </div>
+      <div class="grid" id="products">
+        <article class="product" data-category="Jeans">
+          <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?auto=format&fit=crop&w=700&q=85"
+               alt="Classic blue denim jeans" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x700/e5eadf/203f32?text=Denim+Jeans';">
+          <div class="category">Jeans · Good condition</div>
+          <h3>Classic Blue Denim Jeans</h3>
+          <p class="description">Everyday denim with a classic, easy-to-style look.</p>
+          <div class="price">PKR 1,800</div>
+          <div class="product-actions">
+            <button class="btn buy-btn" type="button" data-name="Classic Blue Denim Jeans" data-price="1800">Buy Now</button>
+          </div>
+        </article>
+        <article class="product" data-category="Shirts">
+          <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?auto=format&fit=crop&w=700&q=85"
+               alt="Classic white shirt" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x700/e5eadf/203f32?text=White+Shirt';">
+          <div class="category">Shirts · Very good condition</div>
+          <h3>Classic White Shirt</h3>
+          <p class="description">A versatile wardrobe staple for everyday outfits.</p>
+          <div class="price">PKR 950</div>
+          <div class="product-actions">
+            <button class="btn buy-btn" type="button" data-name="Classic White Shirt" data-price="950">Buy Now</button>
+          </div>
+        </article>
+        <article class="product" data-category="Salwar Kameez">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?auto=format&fit=crop&w=700&q=85"
+               alt="Traditional South Asian outfit" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x700/e5eadf/203f32?text=Salwar+Kameez';">
+          <div class="category">Salwar Kameez · Good condition</div>
+          <h3>Elegant Salwar Kameez</h3>
+          <p class="description">Traditional style for daily wear and special occasions.</p>
+          <div class="price">PKR 2,200</div>
+          <div class="product-actions">
+            <button class="btn buy-btn" type="button" data-name="Elegant Salwar Kameez" data-price="2200">Buy Now</button>
+          </div>
+        </article>
+        <article class="product" data-category="Shirts">
+          <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=85"
+               alt="Casual printed fashion shirt" loading="lazy"
+               onerror="this.onerror=null;this.src='https://placehold.co/600x700/e5eadf/203f32?text=Printed+Shirt';">
+          <div class="category">Shirts · Like new</div>
+          <h3>Casual Printed Shirt</h3>
+          <p class="description">A stylish printed piece ready for another life.</p>
+          <div class="price">PKR 1,200</div>
+          <div class="product-actions">
+            <button class="btn buy-btn" type="button" data-name="Casual Printed Shirt" data-price="1200">Buy Now</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sell-section" id="sell">
+      <div class="sell-info">
+        <div class="eyebrow" style="color:#e7c98d">GIVE CLOTHES A SECOND LIFE</div>
+        <h2>Have clothes to sell?</h2>
+        <p>Add your item details and a photo. This standalone HTML demo previews your listing on this page. To save listings for all visitors, connect it to your FastAPI backend.</p>
+      </div>
+      <form id="sell-form">
+        <h2>List an Item</h2>
+        <label for="item-name">Product name</label>
+        <input id="item-name" name="name" required maxlength="100" placeholder="e.g. Blue Denim Jacket">
+        <label for="item-category">Category</label>
+        <select id="item-category" name="category" required>
+          <option value="Jeans">Jeans</option>
+          <option value="Shirts">Shirts</option>
+          <option value="Salwar Kameez">Salwar Kameez</option>
+        </select>
+        <label for="item-price">Price (PKR)</label>
+        <input id="item-price" name="price" type="number" min="1" required placeholder="e.g. 1500">
+        <label for="item-condition">Condition</label>
+        <select id="item-condition" name="condition" required>
+          <option>Like New</option><option>Very Good</option><option>Good</option><option>Fair</option>
+        </select>
+        <label for="item-description">Description</label>
+        <textarea id="item-description" name="description" required maxlength="500" placeholder="Describe the item honestly..."></textarea>
+        <label for="item-image">Product photo (optional)</label>
+        <input id="item-image" name="image" type="file" accept="image/*">
+        <button class="btn" type="submit">Preview Listing</button>
+        <div class="notice" id="sell-notice" role="status"></div>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <a class="logo" href="#home">Reweara</a>
+    <p>Good clothes deserve another life.</p>
+    <p>Demo website · Orders and listings are not saved to a server.</p>
+  </footer>
+
+  <script>
+    const filters = document.querySelectorAll(".filter");
+    const products = document.querySelectorAll(".product");
+    const count = document.getElementById("product-count");
+
+    function applyFilter(category) {
+      let visible = 0;
+      products.forEach(product => {
+        const show = category === "All" || product.dataset.category === category;
+        product.style.display = show ? "flex" : "none";
+        if (show) visible++;
+      });
+      count.textContent = `${visible} item${visible === 1 ? "" : "s"}`;
+    }
+
+    filters.forEach(button => {
+      button.addEventListener("click", () => {
+        filters.forEach(item => item.classList.remove("active"));
+        button.classList.add("active");
+        applyFilter(button.dataset.category);
+      });
+    });
+
+    document.querySelectorAll(".buy-btn").forEach(button => {
+      button.addEventListener("click", () => {
+        const name = button.dataset.name;
+        const price = Number(button.dataset.price).toLocaleString("en-PK");
+        const buyer = prompt(`Product: ${name}\nPrice: PKR ${price}\n\nEnter your name to create a demo order request:`);
+        if (buyer && buyer.trim()) {
+          alert(`Thank you, ${buyer.trim()}! Your demo request for ${name} has been noted on this page only. No payment was taken.`);
+        }
+      });
+    });
+
+    document.getElementById("sell-form").addEventListener("submit", event => {
+      event.preventDefault();
+      const form = event.currentTarget;
+      const name = document.getElementById("item-name").value.trim();
+      const category = document.getElementById("item-category").value;
+      const price = Number(document.getElementById("item-price").value);
+      const condition = document.getElementById("item-condition").value;
+      const description = document.getElementById("item-description").value.trim();
+      const file = document.getElementById("item-image").files[0];
+      const notice = document.getElementById("sell-notice");
+
+      if (!name || !description || !Number.isFinite(price) || price <= 0) {
+        notice.style.display = "block";
+        notice.textContent = "Please enter a valid name, description and price.";
+        return;
+      }
+
+      const article = document.createElement("article");
+      article.className = "product";
+      article.dataset.category = category;
+
+      const img = document.createElement("img");
+      img.alt = `${name} - ${condition} condition`;
+      img.loading = "lazy";
+      img.src = file ? URL.createObjectURL(file) :
+        "https://placehold.co/600x700/e5eadf/203f32?text=Your+Clothing";
+
+      const categoryText = document.createElement("div");
+      categoryText.className = "category";
+      categoryText.textContent = `${category} · ${condition} condition`;
+
+      const heading = document.createElement("h3");
+      heading.textContent = name;
+
+      const desc = document.createElement("p");
+      desc.className = "description";
+      desc.textContent = description;
+
+      const priceText = document.createElement("div");
+      priceText.className = "price";
+      priceText.textContent = `PKR ${price.toLocaleString("en-PK")}`;
+
+      article.append(img, categoryText, heading, desc, priceText);
+      document.getElementById("products").prepend(article);
+      products.forEach(p => p.style.display = "flex");
+      filters.forEach(f => f.classList.toggle("active", f.dataset.category === "All"));
+      count.textContent = `${document.querySelectorAll(".product").length} items`;
+
+      notice.style.display = "block";
+      notice.textContent = "Your listing preview has been added. It is not saved permanently.";
+      form.reset();
+      document.getElementById("collection").scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+</body>
+</html>
